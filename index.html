@@ -4,151 +4,281 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BlueHire</title>
+    <link rel="stylesheet" href="./styles/style.css" />
   </head>
   <body>
     <header>
-      <img src="" alt="" />
+      <img
+        src="./assets/images/BlueHireLogo.png"
+        alt=""
+        width="50px"
+        height="50px"
+      />
       <nav>
         <ul>
-          <li><a href=""></a></li>
-          <li><a href="">Home</a></li>
-          <li><a href="">About us</a></li>
-          <li><a href="">Key Features</a></li>
-          <li><a href="">Testimonials</a></li>
-          <li><a href="">Our Crew</a></li>
-          <li><a href="">Chatbot</a></li>
-          <li><a href="">Chatbot</a></li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#aboutUs">About us</a></li>
+          <li><a href="#keyFeatures">Key Features</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#team">Our Crew</a></li>
+          <li><a href="#chat-bot">Chatbot</a></li>
+          <li><a href="#contactUs">Contact us</a></li>
         </ul>
       </nav>
+      <div class="login-signup-button">
+        <button class="login-btn">Login</button>
+        <button class="signup-btn">Sign Up</button>
+      </div>
     </header>
     <main>
-      <section class="Hero" id="Hero">
-        <h1>A Place Where Skilled Hands Meet Opportunity</h1>
-        <h2>
-          Connect with trusted hands and real skill. Whether you're hiring or
-          getting hired, this platform makes it simple, fast, and human.
-          Experience the future of blue-collar work.
-        </h2>
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <h2></h2>
-      </section>
-      <section class="aboutUs">
-        <h2>About us</h2>
-        <p></p>
-      </section>
-      <section class="keyFeatures">
-        <h2>Key Features</h2>
-        <div>
-          <div></div>
-          <p></p>
-        </div>
-        <div>
-          <div></div>
-          <p></p>
-        </div>
-        <div>
-          <div></div>
-          <p></p>
-        </div>
-      </section>
-      <section class="testimonials">
-        <h2>Testimonials</h2>
-        <p>Feedback that feeds us</p>
-        <div class="testimonial-card">
-          <img src="" alt="" />
-          <div>
-            <p></p>
-            <p></p>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <img src="" alt="" />
-          <div>
-            <p></p>
-            <p></p>
+      <section class="hero" id="hero">
+        <div class="hero-content">
+          <h1>A Place Where Your Skilled Hands Meet Opportunity</h1>
+          <p>
+            Connect with trusted hands and real skill. Whether you're hiring or
+            getting hired, this platform makes it simple, fast, and human.
+            Experience the future of blue-collar work.
+          </p>
+
+          <div class="hero-images-u">
+            <div class="row top">
+              <img src="./assets/images/carpenter.png" alt="carpenter" />
+              <img src="./assets/images/mechanic.png" alt="mechanic" />
+            </div>
+            <div class="row bottom">
+              <img src="./assets/images/welder.jpeg" alt="welder" />
+              <img src="./assets/images/hand-shaking.png" alt="hand-shaking" />
+              <img src="./assets/images/plumber.jpeg" alt="plumber" />
+            </div>
+            <button class="get-started-btn">Get Started</button>
           </div>
         </div>
       </section>
-      <section class="team" id="team">
-        <div>
-          <img src="" alt="" />
-          <p></p>
-          <p></p>
-        </div>
-        <div>
-          <img src="" alt="" />
-          <p></p>
-          <p></p>
-        </div>
-        <div>
-          <img src="" alt="" />
-          <p></p>
-          <p></p>
+      <section class="aboutUs" id="aboutUs">
+        <div class="about-us-content">
+          <div class="section-title aboutUs-title">
+            <h2>About us</h2>
+          </div>
+          <div class="section-note about-us-note">
+            <p>
+              I grew up seeing skilled workers like electricians, metal workers,
+              and carpenters struggling to find consistent work — not because
+              they lacked skill, but because no platform truly showcased their
+              talent. Unlike office jobs, most tradespeople rely on
+              word-of-mouth or roadside ads. I realized existing hiring apps
+              weren’t built for them — they didn’t support visual portfolios,
+              license verification, or simple direct hiring. That’s why I
+              started ForgeHire: to help skilled hands be seen, hired, and
+              respected.
+            </p>
+          </div>
         </div>
       </section>
-      <section class="chat-bot">
-        <div>
-          <h2>Chatbot</h2>
-          <div>
-            <h3>Ask BlueHire</h3>
-            <div></div>
-            <div>
-              <img src="" alt="" />
-              <div></div>
+      <section class="keyFeatures" id="keyFeatures">
+        <div class="keyFeatures-content">
+          <div class="section-title keyFeatures-title">
+            <h2>Key Features</h2>
+          </div>
+
+          <div class="carousel-wrapper">
+            <button class="arrow left">&#10094;</button>
+
+            <div class="carousel-container">
+              <div class="carousel-track">
+                <!-- Card 1 -->
+                <div class="keyFeatures-card">
+                  <div class="card-image">
+                    <img src="./assets/images/prize.png" alt="prize" />
+                  </div>
+                  <p>
+                    Each month, the highest-rated worker wins a special prize.
+                  </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="keyFeatures-card">
+                  <div class="card-image">
+                    <img src="./assets/images/profile.png" alt="profile" />
+                  </div>
+                  <p>
+                    You can build profiles like this using voice. No reading or
+                    typing is required.
+                  </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="keyFeatures-card">
+                  <div class="card-image">
+                    <img src="./assets/images/chatbot.jpeg" alt="chatbot" />
+                  </div>
+                  <p>
+                    Describe the work you need, and our bot serves up the
+                    perfect workers in seconds.
+                  </p>
+                </div>
+              </div>
             </div>
 
+            <button class="arrow right">&#10095;</button>
+          </div>
+        </div>
+      </section>
+      <section class="testimonials" id="testimonials">
+        <div class="section-title keyFeatures-title">
+          <h2>Testimonials</h2>
+        </div>
+        <div class="section-note testimonials-note">
+          <p>Feedback that feeds us</p>
+        </div>
+        <div class="testimonial-cards">
+          <div class="testimonial-card">
+            <img src="./assets/images/painter.png" alt="painter" />
             <div>
-              <p></p>
-              <img src="" alt="" />
+              <p>This platform helped me find reliable work consistently!</p>
+              <p>Amanuel Bekele, Electrician</p>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <img src="./assets/images/recruiter.png" alt="recruiter" />
+            <div>
+              <p>I hired a plumber in minutes. Highly recommended!</p>
+              <p>- Meron Desta, Homeowner</p>
             </div>
           </div>
         </div>
       </section>
-      <section class="contactUs">
-        <div>
-          <p></p>
-          <div></div>
+
+      <section class="brand" id="brand">
+        <div class="brand-content">
+          <div class="skill">
+            <p>Skill</p>
+          </div>
+          <div class="dignity">
+            <p>Dignity</p>
+          </div>
+          <div class="opportunity">
+            <p>Opportunity</p>
+          </div>
         </div>
-        <div>
-          <p></p>
-          <div></div>
+      </section>
+
+      <section class="team" id="team">
+        <h2>Meet the Team</h2>
+        <div class="team-container">
+          <div class="team-member">
+            <div class="image-of-team-member">
+              <img src="./assets/images/sintayehu.jpg" alt="Sintayehu Bikila" />
+            </div>
+            <div class="name-and-role">
+              <p>Sintayehu Bikila,</p>
+              <p>Digital Engagement & Trust Manager</p>
+            </div>
+          </div>
+          <div class="team-member">
+            <div class="image-of-team-member">
+              <img src="./assets/images/sena.png" alt="Sena Kebede" />
+            </div>
+            <div class="name-and-role">
+              <p>Sena Kebede,</p>
+              <p>Founder & Product Lead</p>
+            </div>
+          </div>
+          <div class="team-member">
+            <div class="image-of-team-member">
+              <img src="./assets/images/kale.jpg" alt="Kaletsidik Ayalew" />
+            </div>
+            <div class="name-and-role">
+              <p>Kaletsidik Ayalew,</p>
+              <p>Digital Engagement & Trust Manager</p>
+            </div>
+          </div>
         </div>
-        <div>
-          <p></p>
-          <div></div>
-        </div>
-        <div class="send">
-          <button></button>
-        </div>
-        <footer>
-          <div><img src="" alt="logo" /></div>
+      </section>
+
+      <section class="chat-bot" id="chat-bot">
+        <div class="chatbot-content">
+          <div class="section-title aboutUs-title">
+            <h2>Chatbot</h2>
+          </div>
           <div>
+            <h3>Ask BlueHire</h3>
+            <div id="chat-box"></div>
+            <div class="chat-input">
+              <input
+                type="text"
+                id="user-input"
+                placeholder="Enter a message"
+              />
+              <img
+                id="send-btn"
+                src="./assets/images/send.png"
+                alt="send-image"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contactUs" id="contactUs">
+        <div class="contactUs-content">
+          <div class="section-title contactus-title">
+            <h2>Contact Us</h2>
+          </div>
+          <div class="get-in-touch">
+            <div class="label-and-input">
+              <p class="label">Name</p>
+              <div class="input-box">
+                <input type="text" placeholder="Enter a name" />
+              </div>
+            </div>
+
+            <div class="label-and-input">
+              <p class="label">Email</p>
+              <div class="input-box">
+                <input type="text" placeholder="Enter an email" />
+              </div>
+            </div>
+
+            <div class="label-and-input">
+              <p class="label">Message</p>
+              <div class="input-box">
+                <input type="text" placeholder="Enter a message" />
+              </div>
+            </div>
+            <div class="send">
+              <button type="submit">Send</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <div class="logo-and-links">
+          <div><img src="./assets/images/BlueHireLogo.png" alt="logo" /></div>
+          <div class="links">
             <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#aboutus"> About us</a></li>
+              <li><a href="#keyFeatures">Key features</a></li>
+              <li><a href="#testimonials">Testimonials</a></li>
+              <li><a href="#team">Our crew</a></li>
+              <li><a href="#chat-bot">Chatbot</a></li>
+              <li><a href="#contactUs">Contact us</a></li>
             </ul>
           </div>
-          <div class="">
-            <h3>Follow us</h3>
-            <div class="logo">
-              <img src="" alt="" />
-              <img src="" alt="" />
-              <img src="" alt="" />
-            </div>
+        </div>
+        <div class="follow-us">
+          <h3>Follow us</h3>
+          <div class="social-media-icons">
+            <img src="./assets/images/x.png" alt="x" />
+            <img src="./assets/images/instagram.png" alt="instagram" />
+            <img src="./assets/images/linkedin.png" alt="linkedin" />
           </div>
-          <div class="copyright">
-            <p></p>
-          </div>
-        </footer>
-      </section>
+        </div>
+        <div class="copyright">
+          <p>© 2025 BlueHire. All rights reserved.</p>
+        </div>
+      </footer>
     </main>
+    <script src="./main.js"></script>
   </body>
 </html>
