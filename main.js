@@ -10,7 +10,7 @@ const rightArrow = document.querySelector(".arrow.right");
 let currentIndex = 0;
 
 function updateCarousel() {
-  const cardWidth = cards[0].offsetWidth + 32; // include the 2rem (gap)
+  const cardWidth = cards[0].offsetWidth + 32;
   const offset = (track.offsetWidth - cardWidth) / 2;
   track.style.transform = `translateX(calc(${offset}px - ${
     cardWidth * currentIndex
@@ -35,7 +35,6 @@ rightArrow.addEventListener("click", () => {
   }
 });
 
-// Touch support
 let startX = 0;
 track.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
@@ -123,72 +122,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   const sendBtn = document.getElementById("send-btn");
-//   const userInput = document.getElementById("user-input"); // ✅ corrected ID
-//   const chatBox = document.getElementById("chat-box");
-
-//   if (!sendBtn || !userInput || !chatBox) return;
-
-//   const faq = {
-//     "do i need a diploma to get hired here":
-//       "No diploma needed! BlueHire connects you based on skills, not certificates.",
-//     "how do i apply":
-//       "You can apply by creating a profile and showcasing your skills.",
-//     "what is bluehire":
-//       "BlueHire is a platform that connects employers with skilled individuals.",
-//     "is bluehire free": "Yes, BlueHire is free for job seekers.",
-//   };
-
-//   sendBtn.addEventListener("click", () => {
-//     const msg = userInput.value.trim();
-//     if (!msg) return;
-
-//     appendUserMessage(msg);
-//     const response = getBotResponse(msg);
-//     setTimeout(() => {
-//       appendBotMessage(response);
-//     }, 500);
-
-//     userInput.value = "";
-//   });
-
-//   userInput.addEventListener("keypress", (e) => {
-//     if (e.key === "Enter") {
-//       sendBtn.click();
-//     }
-//   });
-
-//   function appendUserMessage(text) {
-//     const div = document.createElement("div");
-//     div.className = "user-message";
-//     div.innerHTML = `<p>${text}</p>`;
-//     chatBox.appendChild(div);
-//     chatBox.scrollTop = chatBox.scrollHeight;
-//   }
-
-//   function appendBotMessage(text) {
-//     const div = document.createElement("div");
-//     div.className = "bot-message";
-//     div.innerHTML = `
-//       <img src="./assets/images/BlueHireLogo.png" alt="bot" />
-//       <p>${text}</p>
-//     `;
-//     chatBox.appendChild(div);
-//     chatBox.scrollTop = chatBox.scrollHeight;
-//   }
-
-//   function getBotResponse(msg) {
-//     const lowerMsg = msg.toLowerCase();
-//     for (const question in faq) {
-//       if (lowerMsg.includes(question)) {
-//         return faq[question];
-//       }
-//     }
-//     return "Sorry, I don't have an answer to that yet.";
-//   }
-// });
-
 document.addEventListener("DOMContentLoaded", function () {
   const faqItems = document.querySelectorAll(".faq-item");
 
@@ -213,15 +146,13 @@ document.addEventListener("DOMContentLoaded", function () {
 let visitCount = localStorage.getItem("visitCount");
 
 if (visitCount) {
-  visitCount = parseInt(visitCount) + 1; // Increment
+  visitCount = parseInt(visitCount) + 1;
 } else {
-  visitCount = 1; // First visit
+  visitCount = 1;
 }
 
-// Save back to localStorage
 localStorage.setItem("visitCount", visitCount);
 
-// Display it in the HTML
 document.getElementById("visit-count").textContent = visitCount;
 
 const chatBox = document.getElementById("chat-box");

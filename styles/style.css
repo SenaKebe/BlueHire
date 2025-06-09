@@ -3,23 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-/* body {
-  background-color: #2c3e50;
-  color: white;
-}
-
-header {
-  display: flex;
-}
-header nav ul {
-  display: flex;
-  text-decoration: none;
-  list-style: none;
-}
-header nav {
-  margin-left: 200px;
-  justify-content: space-evenly;
-} */
 
 
 body {
@@ -85,7 +68,6 @@ header nav ul li a:hover {
 
 .login-btn {
   background-color: #FFD700;
-  /* border: 1px solid white; */
   color: #003366;;
 }
 
@@ -176,7 +158,7 @@ header nav ul li a:hover {
 }
 
 .hero-images-u .bottom img:nth-child(2) {
-  margin-top: 20px; /* <-- adjust this value as needed */
+  margin-top: 20px; 
 }
 
 .hero-images-u img {
@@ -187,10 +169,9 @@ header nav ul li a:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* Get Started Button */
 .get-started-btn {
   position: absolute;
-  top: 30%; /* Adjust this upward */
+  top: 30%; 
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #FFD700;
@@ -211,64 +192,6 @@ header nav ul li a:hover {
   color: white;
 }
 
-/* .hero {
-  /* width: 100%;
-  height: 680px; */
-/* background-image: url("../assets/images/backgroundImage.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center; */
-/* filter: blur(8px); */
-/* width: 100%;
-  height: 60vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  background-image: url("../assets/images/backgroundImage.png");
-  background-size: cover;
-  background-position: center;
-  content: "";
-  z-index: -1; */
-
-/* filter: blur(10px) brightness(0.6);ound-i */
-/* } */
-/* .hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(...);
-  filter: blur(10px);
-  z-index: -1;
-} */
-/* 
-
-*/
-/* .aboutUs {
-  width: 100%;
-  height: 50vh;
-}
-.about-us-content {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 20px;
-  left: 50px;
-}
-.aboutUs .about-us-note {
-  width: 500px;
-  height: auto;
-  padding-top: 30px;
-  margin-left: 40px;
-}
-.aboutUs-title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 100px;
-} */
 .aboutUs {
   width: 100%;
   min-height: 60vh;
@@ -305,26 +228,6 @@ header nav ul li a:hover {
   line-height: 1.7;
 }
 
-/* .keyFeatures {
-  height: 80vh;
-}
-.keyFeatures-cards {
-  display: flex;
-  justify-content: space-between;
-}
-.keyFeatures-card {
-  background-color: #003366;
-  width: 480px;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 50px;
-}
-.keyFeatures-card .card-image img {
-  width: 250px;
-  height: auto;
-} */
 
 .keyFeatures {
   padding: 4rem 1rem;
@@ -402,21 +305,11 @@ header nav ul li a:hover {
 .arrow.right {
   right: -10px;
 }
-/* 
-.testimonials {
-  padding: 80px 60px;
-  text-align: center;
-  position: relative;
-}
 
-.testimonials h2 {
-  font-size: 2.5rem;
-  color: #00bfff;
-  margin-bottom: 0.5rem; /* add slight spacing below the title */
 
 
 .testimonials-note {
-  margin-bottom: 3rem; /* push cards lower to separate from title */
+  margin-bottom: 3rem; 
   font-size: 1.1rem;
   color: #555;
 }
@@ -449,17 +342,16 @@ header nav ul li a:hover {
   width: 100px;
   height: 100px;
   object-fit: cover;
-  border-radius: 40px; /* makes the image rounded, not fully circular */
+  border-radius: 40px; 
   position: absolute;
   top: -50px;
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
-  /* border: none; */ /* already no border since we removed it */
 }
 
 .testimonial-card div {
-  margin-top: 70px; /* adds gap between image and text */
+  margin-top: 70px; 
 }
 
 .testimonial-card p {
@@ -669,7 +561,7 @@ section.brand {
   width: 400px;
 }
 #chat-box {
-  max-height: 300px; /* Or any height you prefer */
+  max-height: 300px;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
@@ -773,7 +665,7 @@ section.brand {
 }
 
 .label {
-  width: 100px; /* fixed width for alignment */
+  width: 100px; 
   font-size: 1rem;
   font-weight: 500;
 }
@@ -1014,7 +906,7 @@ footer {
   }
 
   .hero::before {
-    background-color: rgba(44, 62, 80, 0.9); /* darker for text visibility */
+    background-color: rgba(44, 62, 80, 0.9);
     backdrop-filter: blur(10px);
   }
 
