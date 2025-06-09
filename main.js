@@ -184,3 +184,25 @@ document.addEventListener("DOMContentLoaded", () => {
     return "Sorry, I don't have an answer to that yet.";
   }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const faqItems = document.querySelectorAll(".faq-item");
+
+  faqItems.forEach((item) => {
+    const question = item.querySelector(".faq-question");
+
+    question.addEventListener("click", () => {
+      item.classList.toggle("active");
+
+      const column = item.closest(".faq-column");
+      if (column) {
+        const columnItems = column.querySelectorAll(".faq-item");
+        columnItems.forEach((colItem) => {
+          if (colItem !== item && colItem.classList.contains("active")) {
+            colItem.classList.remove("active");
+          }
+        });
+      }
+    });
+  });
+});
