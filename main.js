@@ -1,3 +1,7 @@
+function toggleMenu() {
+  const nav = document.getElementById("main-nav");
+  nav.classList.toggle("active");
+}
 const track = document.querySelector(".carousel-track");
 const cards = document.querySelectorAll(".keyFeatures-card");
 const leftArrow = document.querySelector(".arrow.left");
