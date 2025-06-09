@@ -569,10 +569,11 @@ section.brand {
   gap: 20px;
   align-items: center;
 }
-.brand-content h2{
-    margin-left: 700px;
-    margin-bottom: 100px;
+.brand-content h2 {
+  margin-bottom: 100px;
+  text-align: center;
 }
+
 .brand-card .skill,
 .brand-card .dignity,
 .brand-card .opportunity {
@@ -1183,5 +1184,25 @@ footer {
   .team-member p {
     font-size: 13px;
     margin: 8px 0;
+  }
+  .faq-columns {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .faq .section-title {
+    margin-left: 0;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .faq-question {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .faq-answer p {
+    font-size: 0.95rem;
   }
 }
