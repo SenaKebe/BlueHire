@@ -966,6 +966,11 @@ footer {
   font-size: 0.9rem;
   color: #666;
 }
+#visit-count {
+  font-weight: bold;
+  color: #007bff;
+}
+
 
 
 @media (max-width: 768px) {

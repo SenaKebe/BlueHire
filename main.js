@@ -210,6 +210,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+let visitCount = localStorage.getItem("visitCount");
+
+if (visitCount) {
+  visitCount = parseInt(visitCount) + 1; // Increment
+} else {
+  visitCount = 1; // First visit
+}
+
+// Save back to localStorage
+localStorage.setItem("visitCount", visitCount);
+
+// Display it in the HTML
+document.getElementById("visit-count").textContent = visitCount;
+
 const chatBox = document.getElementById("chat-box");
 const userInput = document.getElementById("user-input");
 const sendBtn = document.getElementById("send-btn");
@@ -230,7 +244,7 @@ function appendMessage(sender, message) {
   div.className = "chat " + sender;
   div.innerHTML =
     sender === "ai"
-      ? `<span class="flag">🤖</span><strong>AI:</strong> ${message}`
+      ? `<span class="flag">⛑️</span><strong>AI:</strong> ${message}`
       : `<strong>👤 You:</strong> ${message}`;
   chatBox.appendChild(div);
   chatBox.scrollTop = chatBox.scrollHeight;
