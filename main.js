@@ -119,71 +119,71 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const sendBtn = document.getElementById("send-btn");
-  const userInput = document.getElementById("user-input"); // ✅ corrected ID
-  const chatBox = document.getElementById("chat-box");
+// document.addEventListener("DOMContentLoaded", () => {
+//   const sendBtn = document.getElementById("send-btn");
+//   const userInput = document.getElementById("user-input"); // ✅ corrected ID
+//   const chatBox = document.getElementById("chat-box");
 
-  if (!sendBtn || !userInput || !chatBox) return;
+//   if (!sendBtn || !userInput || !chatBox) return;
 
-  const faq = {
-    "do i need a diploma to get hired here":
-      "No diploma needed! BlueHire connects you based on skills, not certificates.",
-    "how do i apply":
-      "You can apply by creating a profile and showcasing your skills.",
-    "what is bluehire":
-      "BlueHire is a platform that connects employers with skilled individuals.",
-    "is bluehire free": "Yes, BlueHire is free for job seekers.",
-  };
+//   const faq = {
+//     "do i need a diploma to get hired here":
+//       "No diploma needed! BlueHire connects you based on skills, not certificates.",
+//     "how do i apply":
+//       "You can apply by creating a profile and showcasing your skills.",
+//     "what is bluehire":
+//       "BlueHire is a platform that connects employers with skilled individuals.",
+//     "is bluehire free": "Yes, BlueHire is free for job seekers.",
+//   };
 
-  sendBtn.addEventListener("click", () => {
-    const msg = userInput.value.trim();
-    if (!msg) return;
+//   sendBtn.addEventListener("click", () => {
+//     const msg = userInput.value.trim();
+//     if (!msg) return;
 
-    appendUserMessage(msg);
-    const response = getBotResponse(msg);
-    setTimeout(() => {
-      appendBotMessage(response);
-    }, 500);
+//     appendUserMessage(msg);
+//     const response = getBotResponse(msg);
+//     setTimeout(() => {
+//       appendBotMessage(response);
+//     }, 500);
 
-    userInput.value = "";
-  });
+//     userInput.value = "";
+//   });
 
-  userInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      sendBtn.click();
-    }
-  });
+//   userInput.addEventListener("keypress", (e) => {
+//     if (e.key === "Enter") {
+//       sendBtn.click();
+//     }
+//   });
 
-  function appendUserMessage(text) {
-    const div = document.createElement("div");
-    div.className = "user-message";
-    div.innerHTML = `<p>${text}</p>`;
-    chatBox.appendChild(div);
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }
+//   function appendUserMessage(text) {
+//     const div = document.createElement("div");
+//     div.className = "user-message";
+//     div.innerHTML = `<p>${text}</p>`;
+//     chatBox.appendChild(div);
+//     chatBox.scrollTop = chatBox.scrollHeight;
+//   }
 
-  function appendBotMessage(text) {
-    const div = document.createElement("div");
-    div.className = "bot-message";
-    div.innerHTML = `
-      <img src="./assets/images/BlueHireLogo.png" alt="bot" />
-      <p>${text}</p>
-    `;
-    chatBox.appendChild(div);
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }
+//   function appendBotMessage(text) {
+//     const div = document.createElement("div");
+//     div.className = "bot-message";
+//     div.innerHTML = `
+//       <img src="./assets/images/BlueHireLogo.png" alt="bot" />
+//       <p>${text}</p>
+//     `;
+//     chatBox.appendChild(div);
+//     chatBox.scrollTop = chatBox.scrollHeight;
+//   }
 
-  function getBotResponse(msg) {
-    const lowerMsg = msg.toLowerCase();
-    for (const question in faq) {
-      if (lowerMsg.includes(question)) {
-        return faq[question];
-      }
-    }
-    return "Sorry, I don't have an answer to that yet.";
-  }
-});
+//   function getBotResponse(msg) {
+//     const lowerMsg = msg.toLowerCase();
+//     for (const question in faq) {
+//       if (lowerMsg.includes(question)) {
+//         return faq[question];
+//       }
+//     }
+//     return "Sorry, I don't have an answer to that yet.";
+//   }
+// });
 
 document.addEventListener("DOMContentLoaded", function () {
   const faqItems = document.querySelectorAll(".faq-item");
@@ -205,4 +205,66 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+});
+const chatBox = document.getElementById("chat-box");
+const userInput = document.getElementById("user-input");
+const sendBtn = document.getElementById("send-btn");
+
+const contextPrompt = `
+You are BlueHire’s helpful AI assistant.
+BlueHire is a startup founded by Sena Kebede. Our mission is to empower blue-collar workers by giving them visibility and access to job opportunities.
+We help connect employers with skilled workers like painters, electricians, plumbers, and more.
+Services include: worker profiles using voice (no typing needed), smart matching using AI, and monthly recognition for top-rated workers.
+Vision: a world where skilled labor earns dignity, opportunity, and stable income.
+Contact us through the form or chatbot.
+
+Be friendly, clear, and helpful in your answers. Respond to greetings like "hello", and explain who you are if someone asks "what is BlueHire?" or "who are you?".
+`;
+
+function appendMessage(sender, message) {
+  const div = document.createElement("div");
+  div.className = "chat " + sender;
+  div.innerHTML =
+    sender === "ai"
+      ? `<span class="flag">🤖</span><strong>AI:</strong> ${message}`
+      : `<strong>👤 You:</strong> ${message}`;
+  chatBox.appendChild(div);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+sendBtn.addEventListener("click", async () => {
+  const msg = userInput.value.trim();
+  if (!msg) {
+    alert("Please enter a message.");
+    return;
+  }
+
+  appendMessage("user", msg);
+  userInput.value = "";
+
+  try {
+    const fullPrompt = `${contextPrompt}\n\nUser: ${msg}\nAI:`;
+
+    const response = await puter.ai.chat({
+      prompt: fullPrompt,
+    });
+
+    if (response && response.choices && response.choices.length > 0) {
+      const aiReply =
+        response.choices[0].text ||
+        response.choices[0].message?.content ||
+        "No response.";
+      appendMessage("ai", aiReply.trim());
+    } else {
+      appendMessage("ai", "No response from the AI.");
+      console.warn(response);
+    }
+  } catch (err) {
+    appendMessage("ai", "Error reaching the AI. Please try again later.");
+    console.error(err);
+  }
+});
+
+userInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") sendBtn.click();
 });

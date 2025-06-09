@@ -964,3 +964,178 @@ footer {
   font-size: 0.9rem;
   color: #666;
 }
+
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .login-signup-button {
+    margin-top: 10px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .hero-images-u .row,
+  .hero-images-u .bottom {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-images-u img {
+    width: 90%;
+    height: auto;
+  }
+
+  .get-started-btn {
+    top: 85%;
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+.about-us-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .aboutUs-title h2 {
+    font-size: 2rem;
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .about-us-note {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0 10px;
+  }
+  .carousel-track {
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .keyFeatures-card {
+    flex: 0 0 80%;
+    height: auto;
+    transform: scale(1);
+    opacity: 1;
+    padding: 1rem;
+  }
+
+  .card-image img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .arrow {
+    font-size: 1.5rem;
+    padding: 0.3rem 0.8rem;
+  }
+
+  .arrow.left {
+    left: 0;
+  }
+
+  .arrow.right {
+    right: 0;
+  }
+
+  .section-title h2 {
+    font-size: 1.5rem;
+  }
+  .testimonial-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .testimonial-subtitle {
+    font-size: 1rem;
+  }
+
+  .testimonial-card {
+    width: 90%;
+    padding: 60px 15px 20px;
+  }
+
+  .testimonial-card img {
+    width: 80px;
+    height: 80px;
+    top: -40px;
+  }
+
+  .testimonial-card div {
+    margin-top: 60px;
+  }
+
+  .toggle-button {
+    font-size: 0.9rem;
+    padding: 6px 16px;
+  }
+  .brand-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .brand-card {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .brand-card .skill,
+  .brand-card .dignity,
+  .brand-card .opportunity {
+    width: 90%;
+    font-size: 1rem;
+    height: auto;
+    padding: 15px 10px;
+    text-align: center;
+  }
+  .team {
+    padding: 40px 10px;
+  }
+
+  .team h2 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  .team-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .team-member {
+    width: 90%;
+    height: auto;
+    padding: 15px;
+  }
+
+  .team-member img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+  }
+
+  .team-member p {
+    font-size: 13px;
+    margin: 8px 0;
+  }
+}
