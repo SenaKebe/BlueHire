@@ -479,16 +479,14 @@ header nav ul li a:hover {
   font-size: 2.5rem;
   color: white;
   margin-bottom: 0.5rem;
-  align-items: center;
-  margin-left: 650px;
+  text-align: center;
 }
 
 .testimonial-subtitle {
   font-size: 1.1rem;
   color: white;
   margin-bottom: 2rem;
-    margin-left: 650px;
-
+  text-align: center;
 }
 
 .audience-toggle {
@@ -1106,7 +1104,7 @@ footer {
   .section-title h2 {
     font-size: 1.5rem;
   }
-  
+
   .testimonial-header h2 {
     font-size: 1.8rem;
   }
