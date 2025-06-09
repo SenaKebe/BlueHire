@@ -53,6 +53,72 @@ track.addEventListener("touchend", (e) => {
 window.addEventListener("resize", updateCarousel);
 window.addEventListener("load", updateCarousel);
 
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleButtons = document.querySelectorAll(".toggle-button");
+  const testimonialCardsContainer = document.getElementById("testimonialCards");
+
+  const testimonials = {
+    employee: [
+      {
+        img: "./assets/images/painter.png",
+        text: "This platform helped me find reliable work consistently!",
+        name: "Amanuel Bekele, Electrician",
+      },
+      {
+        img: "./assets/images/painter.png",
+        text: "BlueHire connected me with jobs I truly enjoy.",
+        name: "Selam Tadesse, Painter",
+      },
+    ],
+    recruiter: [
+      {
+        img: "./assets/images/recruiter.png",
+        text: "I hired a plumber in minutes. Highly recommended!",
+        name: "Meron Desta, Homeowner",
+      },
+      {
+        img: "./assets/images/recruiter.png",
+        text: "It’s fast, efficient, and trustworthy.",
+        name: "Nahom Elias, Apartment Manager",
+      },
+    ],
+  };
+
+  function renderTestimonials(type) {
+    testimonialCardsContainer.classList.add("fade-out");
+
+    setTimeout(() => {
+      testimonialCardsContainer.innerHTML = testimonials[type]
+        .map(
+          (testimonial) => `
+            <div class="testimonial-card">
+              <img src="${testimonial.img}" alt="${testimonial.name}" />
+              <div>
+                <p>${testimonial.text}</p>
+                <p><strong>- ${testimonial.name}</strong></p>
+              </div>
+            </div>
+          `
+        )
+        .join("");
+
+      testimonialCardsContainer.classList.remove("fade-out");
+    }, 200);
+  }
+
+  renderTestimonials("employee");
+
+  toggleButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      toggleButtons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      const audienceType = button.getAttribute("data-audience");
+      renderTestimonials(audienceType);
+    });
+  });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   const sendBtn = document.getElementById("send-btn");
   const userInput = document.getElementById("user-input"); // ✅ corrected ID

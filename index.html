@@ -90,8 +90,11 @@
                   <div class="card-image">
                     <img src="./assets/images/prize.png" alt="prize" />
                   </div>
+                  <p>Worker of the Month Rewards</p>
                   <p>
-                    Each month, the highest-rated worker wins a special prize.
+                    Recognizes the top-rated worker each month with a special
+                    prize, boosting motivation, trust, and service quality
+                    through public recognition and user ratings.
                   </p>
                 </div>
 
@@ -100,9 +103,11 @@
                   <div class="card-image">
                     <img src="./assets/images/profile.png" alt="profile" />
                   </div>
+                  <p>Voice-Based Profile Creation</p>
                   <p>
-                    You can build profiles like this using voice. No reading or
-                    typing is required.
+                    Lets workers create profiles using voice only—no reading or
+                    typing needed. It’s fast, easy, and accessible for everyone,
+                    especially those with low literacy.
                   </p>
                 </div>
 
@@ -111,9 +116,11 @@
                   <div class="card-image">
                     <img src="./assets/images/chatbot.jpeg" alt="chatbot" />
                   </div>
+                  <p>Smart Job Matching</p>
                   <p>
-                    Describe the work you need, and our bot serves up the
-                    perfect workers in seconds.
+                    Instantly connects employers with the right workers based on
+                    job descriptions. Saves time and effort with quick, accurate
+                    matches powered by AI.
                   </p>
                 </div>
               </div>
@@ -123,41 +130,38 @@
           </div>
         </div>
       </section>
-      <section class="testimonials" id="testimonials">
-        <div class="section-title keyFeatures-title">
+      <section class="testimonial-section" id="testimonials">
+        <div class="testimonial-header">
           <h2>Testimonials</h2>
-        </div>
-        <div class="section-note testimonials-note">
-          <p>Feedback that feeds us</p>
-        </div>
-        <div class="testimonial-cards">
-          <div class="testimonial-card">
-            <img src="./assets/images/painter.png" alt="painter" />
-            <div>
-              <p>This platform helped me find reliable work consistently!</p>
-              <p>Amanuel Bekele, Electrician</p>
-            </div>
+          <p class="testimonial-subtitle">Feedback that fuels our mission</p>
+          <div class="audience-toggle">
+            <button class="toggle-button active" data-audience="employee">
+              For Employees
+            </button>
+            <button class="toggle-button" data-audience="recruiter">
+              For Recruiters
+            </button>
           </div>
-          <div class="testimonial-card">
-            <img src="./assets/images/recruiter.png" alt="recruiter" />
-            <div>
-              <p>I hired a plumber in minutes. Highly recommended!</p>
-              <p>- Meron Desta, Homeowner</p>
-            </div>
-          </div>
+        </div>
+
+        <div class="testimonial-cards" id="testimonialCards">
+          <!-- Testimonials will be injected here -->
         </div>
       </section>
 
       <section class="brand" id="brand">
         <div class="brand-content">
-          <div class="skill">
-            <p>Skill</p>
-          </div>
-          <div class="dignity">
-            <p>Dignity</p>
-          </div>
-          <div class="opportunity">
-            <p>Opportunity</p>
+          <h2>Our Brand</h2>
+          <div class="brand-card">
+            <div class="skill">
+              <p>Skill</p>
+            </div>
+            <div class="dignity">
+              <p>Dignity</p>
+            </div>
+            <div class="opportunity">
+              <p>Opportunity</p>
+            </div>
           </div>
         </div>
       </section>
@@ -251,6 +255,99 @@
           </div>
         </div>
       </section>
+ <section class="faq" id="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+
+        <div class="faq-columns">
+          <!-- Left Column -->
+          <div class="faq-column">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                What makes PlantFuel different?
+                <span class="toggle-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  PlantFuel is made from clean, plant-based ingredients that
+                  support performance and recovery without additives.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                Where are your ingredients from?
+                <span class="toggle-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  We source our ingredients from sustainable farms with a focus
+                  on quality and nutrition.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                Are your products vegan and gluten-free?
+                <span class="toggle-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Yes! All our snacks are 100% vegan and gluten-free.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="faq-column">
+            <!-- FAQ Item 4 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                How do I store PlantFuel snacks?
+                <span class="toggle-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Store them in a cool, dry place to maintain freshness and
+                  quality.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                Can I return if I don't like them?
+                <span class="toggle-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Yes, we offer a satisfaction guarantee. Contact support within
+                  30 days for a refund.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ Item 6 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                Do you ship internationally?
+                <span class="toggle-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  We currently ship to select countries. Check our shipping page
+                  for more info.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <footer>
         <div class="logo-and-links">
           <div><img src="./assets/images/BlueHireLogo.png" alt="logo" /></div>

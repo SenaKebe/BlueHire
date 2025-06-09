@@ -354,7 +354,7 @@ header nav ul li a:hover {
 
 .keyFeatures-card {
   flex: 0 0 300px;
-  height: 400px;
+  height: 500px;
   background: #0a3d62;
   border-radius: 20px;
   padding: 1rem;
@@ -399,7 +399,7 @@ header nav ul li a:hover {
 .arrow.right {
   right: -10px;
 }
-
+/* 
 .testimonials {
   padding: 80px 60px;
   text-align: center;
@@ -410,7 +410,7 @@ header nav ul li a:hover {
   font-size: 2.5rem;
   color: #00bfff;
   margin-bottom: 0.5rem; /* add slight spacing below the title */
-}
+
 
 .testimonials-note {
   margin-bottom: 3rem; /* push cards lower to separate from title */
@@ -462,21 +462,118 @@ header nav ul li a:hover {
   font-size: 1rem;
   line-height: 1.6;
   margin: 0.5rem 0;
-}
-section.brand {
-  padding: 40px 20px;
+} */
+
+.testimonial-section {
+    
+  padding: 80px 60px;
+  text-align: center;
+  background-color: #f9f9f9;
 }
 
-.brand-content {
+.testimonial-header h2 {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 0.5rem;
+  align-items: center;
+  margin-left: 700px;
+}
+
+.testimonial-subtitle {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 2rem;
+    margin-left: 700px;
+
+}
+
+.audience-toggle {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 2.5rem;
+}
+
+.toggle-button {
+  padding: 8px 20px;
+  font-size: 1rem;
+  border: none;
+  background-color: #eee;
+  color: #003366;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.toggle-button.active {
+  background-color: #003366;
+  color: white;
+}
+
+.testimonial-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  transition: opacity 0.3s ease;
+}
+
+.testimonial-cards.fade-out {
+  opacity: 0.3;
+}
+
+.testimonial-card {
+  background-color: #003366;
+  color: white;
+  width: 320px;
+  padding: 60px 20px 20px;
+  border-radius: 16px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.testimonial-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+}
+
+.testimonial-card div {
+  margin-top: 70px;
+}
+
+.testimonial-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0.5rem 0;
+}
+
+
+section.brand {
+  padding: 40px 20px;
+  margin-top: 100px ;
+  margin-bottom: 70px;
+}
+
+.brand-card {
+  display: flex;
   gap: 20px;
   align-items: center;
 }
-
-.brand-content .skill,
-.brand-content .dignity,
-.brand-content .opportunity {
+.brand-content h2{
+    margin-left: 700px;
+    margin-bottom: 100px;
+}
+.brand-card .skill,
+.brand-card .dignity,
+.brand-card .opportunity {
   padding: 10px 40px;
   border-radius: 20px;
   font-size: 18px;
