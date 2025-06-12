@@ -153,42 +153,35 @@ if (visitCount) {
 
 localStorage.setItem("visitCount", visitCount);
 
-class BlueHireChatbot {
-  constructor() {
-    this.chatBox = document.getElementById("chat-box");
-    this.userInput = document.getElementById("user-input");
-    this.sendBtn = document.getElementById("send-btn");
-    this.chatStatus = document.getElementById("chat-status");
+document.addEventListener("DOMContentLoaded", () => {
+  const chatBox = document.getElementById("chat-box");
+  const userInput = document.getElementById("user-input");
+  const sendBtn = document.getElementById("send-btn");
+  const chatStatus = document.getElementById("chat-status");
 
-    this.isInitialized = false;
-    this.conversationHistory = [];
+  let isInitialized = false;
+  const conversationHistory = [];
 
-    this.init();
+  function updateStatus(message) {
+    chatStatus.textContent = message;
   }
 
-  async init() {
-    try {
-      this.updateStatus("Connecting to AI services...");
-
-      await this.testConnection();
-
-      this.isInitialized = true;
-      this.enableChat();
-      this.updateStatus("Ready to chat!");
-
-      this.setupEventListeners();
-    } catch (error) {
-      console.error("Failed to initialize chatbot:", error);
-      this.updateStatus("Failed to initialize. Please refresh the page.");
-    }
+  function enableChat() {
+    userInput.disabled = false;
+    sendBtn.disabled = false;
+    userInput.focus();
   }
 
-  async testConnection() {
+  function disableChat() {
+    userInput.disabled = true;
+    sendBtn.disabled = true;
+  }
+
+  async function testConnection() {
     try {
       const testResponse = await window.puter.ai.chat("Hello", {
         model: "gpt-4o-mini",
       });
-
       console.log("Puter.js AI connection successful");
       return true;
     } catch (error) {
@@ -199,69 +192,65 @@ class BlueHireChatbot {
     }
   }
 
-  setupEventListeners() {
-    this.sendBtn.addEventListener("click", () => this.handleSendMessage());
-
-    this.userInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter" && !e.shiftKey) {
-        e.preventDefault();
-        this.handleSendMessage();
-      }
-    });
-
-    this.userInput.addEventListener("input", () => {
-      this.userInput.style.height = "auto";
-      this.userInput.style.height = this.userInput.scrollHeight + "px";
-    });
-  }
-
-  enableChat() {
-    this.userInput.disabled = false;
-    this.sendBtn.disabled = false;
-    this.userInput.focus();
-  }
-
-  disableChat() {
-    this.userInput.disabled = true;
-    this.sendBtn.disabled = true;
-  }
-
-  updateStatus(message) {
-    this.chatStatus.textContent = message;
-  }
-
-  async handleSendMessage() {
-    const message = this.userInput.value.trim();
-    if (!message || !this.isInitialized) return;
-
-    this.addMessage(message, "user");
-    this.userInput.value = "";
-
-    this.disableChat();
-    this.updateStatus("BlueHire is thinking...");
-
-    const typingIndicator = this.showTypingIndicator();
-
+  async function initChatbot() {
     try {
-      const response = await this.getAIResponse(message);
-
-      this.removeTypingIndicator(typingIndicator);
-
-      this.addMessage(response, "bot");
+      updateStatus("Connecting to AI services...");
+      await testConnection();
+      isInitialized = true;
+      enableChat();
+      updateStatus("Ready to chat!");
     } catch (error) {
-      console.error("Error getting AI response:", error);
-      this.removeTypingIndicator(typingIndicator);
-
-      const errorMessage =
-        error.message || "Sorry, I encountered an error. Please try again.";
-      this.addMessage(errorMessage, "bot");
-    } finally {
-      this.enableChat();
-      this.updateStatus("Ready to chat!");
+      console.error("Failed to initialize chatbot:", error);
+      updateStatus("Failed to initialize. Please refresh the page.");
     }
   }
 
-  async getAIResponse(userMessage) {
+  function addMessage(content, sender) {
+    const messageDiv = document.createElement("div");
+    messageDiv.className = `message ${sender}-message`;
+
+    const messageContent = document.createElement("div");
+    messageContent.className = "message-content";
+    messageContent.textContent = content;
+
+    messageDiv.appendChild(messageContent);
+    chatBox.appendChild(messageDiv);
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  function showTypingIndicator() {
+    const typingDiv = document.createElement("div");
+    typingDiv.className = "message bot-message";
+    typingDiv.id = "typing-indicator";
+
+    const typingContent = document.createElement("div");
+    typingContent.className = "typing-indicator";
+
+    const typingDots = document.createElement("div");
+    typingDots.className = "typing-dots";
+
+    for (let i = 0; i < 3; i++) {
+      const dot = document.createElement("div");
+      dot.className = "typing-dot";
+      typingDots.appendChild(dot);
+    }
+
+    typingContent.appendChild(typingDots);
+    typingDiv.appendChild(typingContent);
+    chatBox.appendChild(typingDiv);
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+    return typingDiv;
+  }
+
+  function removeTypingIndicator(indicator) {
+    if (indicator && indicator.parentNode) {
+      indicator.parentNode.removeChild(indicator);
+    }
+  }
+
+  async function getAIResponse(userMessage) {
     try {
       const prompt = `You are BlueHire's AI assistant. BlueHire is an innovative startup focused on revolutionizing the hiring and recruitment industry.
 
@@ -284,20 +273,19 @@ ${userMessage}`;
     } catch (error) {
       console.error("AI API Error Details:", error);
 
-      if (error.message && error.message.includes("rate limit")) {
+      if (error.message?.includes("rate limit")) {
         throw new Error(
           "I'm getting too many requests right now. Please wait a moment and try again."
         );
-      } else if (error.message && error.message.includes("network")) {
+      } else if (error.message?.includes("network")) {
         throw new Error(
           "I'm having network connectivity issues. Please check your internet connection."
         );
-      } else if (error.message && error.message.includes("unauthorized")) {
+      } else if (error.message?.includes("unauthorized")) {
         throw new Error(
           "Authentication issue with AI services. Please refresh the page."
         );
       } else {
-        console.log("Full error object:", error);
         throw new Error(
           "I'm temporarily unavailable. Please try asking your question again."
         );
@@ -305,55 +293,49 @@ ${userMessage}`;
     }
   }
 
-  addMessage(content, sender) {
-    const messageDiv = document.createElement("div");
-    messageDiv.className = `message ${sender}-message`;
+  async function handleSendMessage() {
+    const message = userInput.value.trim();
+    if (!message || !isInitialized) return;
 
-    const messageContent = document.createElement("div");
-    messageContent.className = "message-content";
-    messageContent.textContent = content;
+    addMessage(message, "user");
+    userInput.value = "";
 
-    messageDiv.appendChild(messageContent);
-    this.chatBox.appendChild(messageDiv);
+    disableChat();
+    updateStatus("BlueHire is thinking...");
 
-    this.chatBox.scrollTop = this.chatBox.scrollHeight;
-  }
+    const typingIndicator = showTypingIndicator();
 
-  showTypingIndicator() {
-    const typingDiv = document.createElement("div");
-    typingDiv.className = "message bot-message";
-    typingDiv.id = "typing-indicator";
-
-    const typingContent = document.createElement("div");
-    typingContent.className = "typing-indicator";
-
-    const typingDots = document.createElement("div");
-    typingDots.className = "typing-dots";
-
-    for (let i = 0; i < 3; i++) {
-      const dot = document.createElement("div");
-      dot.className = "typing-dot";
-      typingDots.appendChild(dot);
-    }
-
-    typingContent.appendChild(typingDots);
-    typingDiv.appendChild(typingContent);
-    this.chatBox.appendChild(typingDiv);
-
-    this.chatBox.scrollTop = this.chatBox.scrollHeight;
-
-    return typingDiv;
-  }
-
-  removeTypingIndicator(indicator) {
-    if (indicator && indicator.parentNode) {
-      indicator.parentNode.removeChild(indicator);
+    try {
+      const response = await getAIResponse(message);
+      removeTypingIndicator(typingIndicator);
+      addMessage(response, "bot");
+    } catch (error) {
+      console.error("Error getting AI response:", error);
+      removeTypingIndicator(typingIndicator);
+      addMessage(
+        error.message || "Sorry, I encountered an error. Please try again.",
+        "bot"
+      );
+    } finally {
+      enableChat();
+      updateStatus("Ready to chat!");
     }
   }
-}
 
-document.addEventListener("DOMContentLoaded", () => {
-  new BlueHireChatbot();
+  sendBtn.addEventListener("click", handleSendMessage);
+  userInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  });
+
+  userInput.addEventListener("input", () => {
+    userInput.style.height = "auto";
+    userInput.style.height = userInput.scrollHeight + "px";
+  });
+
+  initChatbot();
 });
 
 window.addEventListener("load", () => {
