@@ -153,67 +153,209 @@ if (visitCount) {
 
 localStorage.setItem("visitCount", visitCount);
 
-document.getElementById("visit-count").textContent = visitCount;
+class BlueHireChatbot {
+  constructor() {
+    this.chatBox = document.getElementById("chat-box");
+    this.userInput = document.getElementById("user-input");
+    this.sendBtn = document.getElementById("send-btn");
+    this.chatStatus = document.getElementById("chat-status");
 
-const chatBox = document.getElementById("chat-box");
-const userInput = document.getElementById("user-input");
-const sendBtn = document.getElementById("send-btn");
+    this.isInitialized = false;
+    this.conversationHistory = [];
 
-const contextPrompt = `
-You are BlueHire’s helpful AI assistant.
-BlueHire is a startup founded by Sena Kebede. Our mission is to empower blue-collar workers by giving them visibility and access to job opportunities.
-We help connect employers with skilled workers like painters, electricians, plumbers, and more.
-Services include: worker profiles using voice (no typing needed), smart matching using AI, and monthly recognition for top-rated workers.
-Vision: a world where skilled labor earns dignity, opportunity, and stable income.
-Contact us through the form or chatbot.
-
-Be friendly, clear, and helpful in your answers. Respond to greetings like "hello", and explain who you are if someone asks "what is BlueHire?" or "who are you?".
-`;
-
-function appendMessage(sender, message) {
-  const div = document.createElement("div");
-  div.className = "chat " + sender;
-  div.innerHTML =
-    sender === "ai"
-      ? `<span class="flag">⛑️</span><strong>AI:</strong> ${message}`
-      : `<strong>👤 You:</strong> ${message}`;
-  chatBox.appendChild(div);
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-sendBtn.addEventListener("click", async () => {
-  const msg = userInput.value.trim();
-  if (!msg) {
-    alert("Please enter a message.");
-    return;
+    this.init();
   }
 
-  appendMessage("user", msg);
-  userInput.value = "";
+  async init() {
+    try {
+      this.updateStatus("Connecting to AI services...");
 
-  try {
-    const fullPrompt = `${contextPrompt}\n\nUser: ${msg}\nAI:`;
+      await this.testConnection();
 
-    const response = await puter.ai.chat({
-      prompt: fullPrompt,
+      this.isInitialized = true;
+      this.enableChat();
+      this.updateStatus("Ready to chat!");
+
+      this.setupEventListeners();
+    } catch (error) {
+      console.error("Failed to initialize chatbot:", error);
+      this.updateStatus("Failed to initialize. Please refresh the page.");
+    }
+  }
+
+  async testConnection() {
+    try {
+      const testResponse = await window.puter.ai.chat("Hello", {
+        model: "gpt-4o-mini",
+      });
+
+      console.log("Puter.js AI connection successful");
+      return true;
+    } catch (error) {
+      console.error("Puter.js connection test failed:", error);
+      throw new Error(
+        "Unable to connect to AI services. Please refresh the page and try again."
+      );
+    }
+  }
+
+  setupEventListeners() {
+    this.sendBtn.addEventListener("click", () => this.handleSendMessage());
+
+    this.userInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        this.handleSendMessage();
+      }
     });
 
-    if (response && response.choices && response.choices.length > 0) {
-      const aiReply =
-        response.choices[0].text ||
-        response.choices[0].message?.content ||
-        "No response.";
-      appendMessage("ai", aiReply.trim());
-    } else {
-      appendMessage("ai", "No response from the AI.");
-      console.warn(response);
-    }
-  } catch (err) {
-    appendMessage("ai", "Error reaching the AI. Please try again later.");
-    console.error(err);
+    this.userInput.addEventListener("input", () => {
+      this.userInput.style.height = "auto";
+      this.userInput.style.height = this.userInput.scrollHeight + "px";
+    });
   }
+
+  enableChat() {
+    this.userInput.disabled = false;
+    this.sendBtn.disabled = false;
+    this.userInput.focus();
+  }
+
+  disableChat() {
+    this.userInput.disabled = true;
+    this.sendBtn.disabled = true;
+  }
+
+  updateStatus(message) {
+    this.chatStatus.textContent = message;
+  }
+
+  async handleSendMessage() {
+    const message = this.userInput.value.trim();
+    if (!message || !this.isInitialized) return;
+
+    this.addMessage(message, "user");
+    this.userInput.value = "";
+
+    this.disableChat();
+    this.updateStatus("BlueHire is thinking...");
+
+    const typingIndicator = this.showTypingIndicator();
+
+    try {
+      const response = await this.getAIResponse(message);
+
+      this.removeTypingIndicator(typingIndicator);
+
+      this.addMessage(response, "bot");
+    } catch (error) {
+      console.error("Error getting AI response:", error);
+      this.removeTypingIndicator(typingIndicator);
+
+      const errorMessage =
+        error.message || "Sorry, I encountered an error. Please try again.";
+      this.addMessage(errorMessage, "bot");
+    } finally {
+      this.enableChat();
+      this.updateStatus("Ready to chat!");
+    }
+  }
+
+  async getAIResponse(userMessage) {
+    try {
+      const prompt = `You are BlueHire's AI assistant. BlueHire is an innovative startup focused on revolutionizing the hiring and recruitment industry.
+
+ABOUT BLUEHIRE:
+- We specialize in AI-powered hiring solutions
+- Our mission is to make hiring more efficient, fair, and data-driven
+- We offer candidate screening, interview scheduling, skills assessment, and recruitment analytics
+- Founded by HR professionals and tech experts
+- We're committed to reducing hiring bias through technology
+
+Please answer the following question about BlueHire in a helpful, professional yet friendly manner:
+
+${userMessage}`;
+
+      const response = await window.puter.ai.chat(prompt, {
+        model: "gpt-4o-mini",
+      });
+
+      return response;
+    } catch (error) {
+      console.error("AI API Error Details:", error);
+
+      if (error.message && error.message.includes("rate limit")) {
+        throw new Error(
+          "I'm getting too many requests right now. Please wait a moment and try again."
+        );
+      } else if (error.message && error.message.includes("network")) {
+        throw new Error(
+          "I'm having network connectivity issues. Please check your internet connection."
+        );
+      } else if (error.message && error.message.includes("unauthorized")) {
+        throw new Error(
+          "Authentication issue with AI services. Please refresh the page."
+        );
+      } else {
+        console.log("Full error object:", error);
+        throw new Error(
+          "I'm temporarily unavailable. Please try asking your question again."
+        );
+      }
+    }
+  }
+
+  addMessage(content, sender) {
+    const messageDiv = document.createElement("div");
+    messageDiv.className = `message ${sender}-message`;
+
+    const messageContent = document.createElement("div");
+    messageContent.className = "message-content";
+    messageContent.textContent = content;
+
+    messageDiv.appendChild(messageContent);
+    this.chatBox.appendChild(messageDiv);
+
+    this.chatBox.scrollTop = this.chatBox.scrollHeight;
+  }
+
+  showTypingIndicator() {
+    const typingDiv = document.createElement("div");
+    typingDiv.className = "message bot-message";
+    typingDiv.id = "typing-indicator";
+
+    const typingContent = document.createElement("div");
+    typingContent.className = "typing-indicator";
+
+    const typingDots = document.createElement("div");
+    typingDots.className = "typing-dots";
+
+    for (let i = 0; i < 3; i++) {
+      const dot = document.createElement("div");
+      dot.className = "typing-dot";
+      typingDots.appendChild(dot);
+    }
+
+    typingContent.appendChild(typingDots);
+    typingDiv.appendChild(typingContent);
+    this.chatBox.appendChild(typingDiv);
+
+    this.chatBox.scrollTop = this.chatBox.scrollHeight;
+
+    return typingDiv;
+  }
+
+  removeTypingIndicator(indicator) {
+    if (indicator && indicator.parentNode) {
+      indicator.parentNode.removeChild(indicator);
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  new BlueHireChatbot();
 });
 
-userInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") sendBtn.click();
+window.addEventListener("load", () => {
+  console.log("BlueHire Chatbot initialized with Puter.js");
 });

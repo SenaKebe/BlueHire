@@ -197,29 +197,31 @@
         </div>
       </section>
 
-      <section class="chat-bot" id="chat-bot">
+  <section class="chat-bot" id="chat-bot">
         <div class="chatbot-content">
-          <div class="section-title aboutUs-title">
-            <h2>Chatbot</h2>
-          </div>
-          <div>
-            <h3>Ask BlueHire</h3>
-            <div id="chat-box"></div>
-            <div class="chat-input">
-              <input
-                type="text"
-                id="user-input"
-                placeholder="Enter a message"
-              />
-              <img
-                id="send-btn"
-                src="./assets/images/send.png"
-                alt="send-image"
-              />
+            <div class="section-title aboutUs-title">
+                <h2>Chatbot</h2>
             </div>
-          </div>
+            <div class="chat-container">
+                <h3>Ask BlueHire</h3>
+                <div id="chat-box">
+                    <div class="welcome-message">
+                        <div class="message bot-message">
+                            <div class="message-content">
+                                👋 Hi! I'm BlueHire's AI assistant. Ask me anything about our startup, mission, services, or story!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input">
+              <input type="text" id="user-input" placeholder="Enter a message" /> <img id="send-btn" src="./assets/images/send.png" alt="send-image" />
+                </div>
+                <div class="chat-status" id="chat-status">
+                    Initializing chatbot...
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
 
       <section class="contactUs" id="contactUs">
         <div class="contactUs-content">
